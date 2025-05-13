@@ -45,6 +45,10 @@ public class DraggableSnapController : MonoBehaviour
     
     public void OnReleased()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
         if (validSnapTarget != null)
         {
             transform.SetParent(validSnapTarget);
@@ -54,11 +58,16 @@ public class DraggableSnapController : MonoBehaviour
         }
         else
         {
+            
+            rb.isKinematic = true;
             transform.position = initialPosition;
             transform.rotation = initialRotation;
             if (!string.IsNullOrEmpty(triggeredObjectName)) {
                 onTriggerEnteredWrong?.Invoke();
             }
+
         }
+        rb.isKinematic = false;
+
     }
 }

@@ -23,7 +23,6 @@ public class AudioController : MonoBehaviour
             audioSource.playOnAwake = false;
         }
         currentIndex = 0;
-        PlayClip(currentIndex);
     }
 
     public void PlayClip(int index)
